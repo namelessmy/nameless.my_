@@ -1,11 +1,135 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+    <title>Nameless Store</title>
+    <style>
+        /* 基本样式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        /* 顶部导航栏 */
+        .header {
+            background: black;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+        .menu {
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .cart {
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .logo {
+            height: 50px;
+        }
+        /* 产品列表 */
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .product {
+            border: 1px solid #ddd;
+            margin: 10px;
+            padding: 10px;
+            text-align: center;
+            width: 200px;
+        }
+        .product img {
+            width: 100%;
+            height: auto;
+        }
+        .buy-btn {
+            background: black;
+            color: white;
+            padding: 5px;
+            cursor: pointer;
+        }
+        /* 购物车页面 */
+        .cart-page {
+            display: none;
+            padding: 20px;
+        }
+        .checkout-btn {
+            background: green;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+        }
+        /* 付款页面 */
+        .payment-page {
+            display: none;
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello, GitHub Pages!</h1>
+
+    <div class="header">
+        <div class="menu">☰</div>
+        <img src="your-logo-url.png" alt="Brand Logo" class="logo">
+        <div class="cart">🛒</div>
+    </div>
+
+    <div class="product-list">
+        <div class="product">
+            <img src="product1.jpg" alt="Product 1">
+            <p>Product 1 - $50</p>
+            <button class="buy-btn" onclick="addToCart('Product 1', 50)">Add to Cart</button>
+        </div>
+        <div class="product">
+            <img src="product2.jpg" alt="Product 2">
+            <p>Product 2 - $60</p>
+            <button class="buy-btn" onclick="addToCart('Product 2', 60)">Add to Cart</button>
+        </div>
+    </div>
+
+    <div class="cart-page">
+        <h2>Shopping Cart</h2>
+        <ul id="cart-items"></ul>
+        <button class="checkout-btn" onclick="checkout()">Proceed to Payment</button>
+    </div>
+
+    <div class="payment-page">
+        <h2>Payment</h2>
+        <p>Scan QR code to pay with TNG eWallet:</p>
+        <img src="your-qrcode-url.png" alt="TNG eWallet QR Code" width="200">
+        <form>
+            <label>Full Name:</label>
+            <input type="text" required><br>
+            <label>Phone Number:</label>
+            <input type="text" required><br>
+            <label>Address:</label>
+            <textarea required></textarea><br>
+            <button type="submit">Confirm Payment</button>
+        </form>
+    </div>
+
+    <script>
+        function addToCart(product, price) {
+            const cartPage = document.querySelector(".cart-page");
+            cartPage.style.display = "block";
+            const cartItems = document.getElementById("cart-items");
+            const li = document.createElement("li");
+            li.textContent = product + " - $" + price;
+            cartItems.appendChild(li);
+        }
+
+        function checkout() {
+            document.querySelector(".cart-page").style.display = "none";
+            document.querySelector(".payment-page").style.display = "block";
+        }
+    </script>
+
 </body>
 </html>
